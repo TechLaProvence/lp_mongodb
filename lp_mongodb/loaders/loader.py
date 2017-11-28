@@ -11,6 +11,7 @@
 import base64
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from tornado.concurrent import return_future
 
 def __conn__(self):
     connection = MongoClient(
@@ -22,11 +23,18 @@ def __conn__(self):
 
     return connection, db, storage
 
-def load(self, url, callback):
-    connection, db, storage = __conn__(self)
-    try:
-        document = storage.find_one({ '_id': ObjectId(url) }, { self.context.config.MONGO_LP_DOC_FIELD: True })
-        file_data = base64.b64decode(document[self.context.config.MONGO_LP_DOC_FIELD])
-        callback(file_data)
-    except (KeyError, TypeError):
+@return_future
+def get(self, path, callback):
+    connection, db, storage = self.__conn__()
+
+    stored = storage.find_one({'path': path})
+
+    if not stored or self.__is_expired(stored):
         callback(None)
+        return
+
+    fs = gridfs.GridFS(db)
+
+    contents = fs.get(stored['file_id']).read()
+
+    callback(str(contents))
