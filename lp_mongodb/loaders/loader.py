@@ -9,6 +9,7 @@
 # Copyright (c) 2011 figarocms dhardy@figarocms.fr
 
 import base64
+import gridfs
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from tornado.concurrent import return_future
