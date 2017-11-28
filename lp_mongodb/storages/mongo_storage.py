@@ -89,7 +89,7 @@ class Storage(BaseStorage):
 
         stored = storage.find_one({'path': path})
 
-        if not stored or self.__is_expired(stored):
+        if not stored :
             callback(None)
             return
 
@@ -105,7 +105,7 @@ class Storage(BaseStorage):
 
         stored = storage.find_one({'path': path})
 
-        if not stored or self.__is_expired(stored):
+        if not stored :
             callback(False)
         else:
             callback(True)
