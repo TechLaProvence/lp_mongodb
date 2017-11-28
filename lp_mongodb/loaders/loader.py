@@ -30,7 +30,7 @@ def get(self, path, callback):
 
     stored = storage.find_one({'path': path})
 
-    if not stored or self.__is_expired(stored):
+    if not stored:
         callback(None)
         return
 
