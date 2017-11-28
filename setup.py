@@ -27,7 +27,7 @@ setup(
     ],
     long_description=long_description,
     classifiers=[
-        'Development Status :: 1 - Production/Stable',
+        'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 2.7',
     ],

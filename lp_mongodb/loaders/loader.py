@@ -25,7 +25,7 @@ def __conn__(self):
     return connection, db, storage
 
 @return_future
-def get(self, path, callback):
+def load(self, path, callback):
     connection, db, storage = self.__conn__()
 
     stored = storage.find_one({'path': path})
