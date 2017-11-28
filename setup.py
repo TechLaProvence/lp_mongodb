@@ -14,7 +14,7 @@ def read(fname):
 
 setup(
     name="lp_mongodb",
-    version="1.1.2",
+    version="1.1.3",
     author="TechLaProvence",
     description=("Thumbor thumbor lp adapters"),
     license="MIT",

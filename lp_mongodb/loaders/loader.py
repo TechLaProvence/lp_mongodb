@@ -16,11 +16,11 @@ from tornado.concurrent import return_future
 
 def __conn__(self):
     connection = MongoClient(
-      self.context.config.MONGO_LP_SERVER_HOST,
-      self.context.config.MONGO_LP_SERVER_PORT
+      self.config.MONGO_LP_SERVER_HOST,
+      self.config.MONGO_LP_SERVER_PORT
     )
-    db = connection[self.context.config.MONGO_LP_SERVER_DB]
-    storage = db[self.context.config.MONGO_LP_SERVER_COLLECTION]
+    db = connection[self.config.MONGO_LP_SERVER_DB]
+    storage = db[self.config.MONGO_LP_SERVER_COLLECTION]
 
     return connection, db, storage
 
